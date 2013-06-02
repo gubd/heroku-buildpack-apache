@@ -33,7 +33,8 @@ fi
 # update config files
 #cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 
-sudo apt-get install apache2
+su -
+apt-get install apache2
 
 chmod +x boot.sh
 
