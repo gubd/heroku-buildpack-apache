@@ -6,7 +6,7 @@ set -e
 
 # config
 APACHE_VERSION="2.4.4"
-APACHE_PATH="apache"
+APR_VERSION="1.4.6"
 
 BIN_DIR=$(dirname $0)
 BUILD_DIR=$1
@@ -28,6 +28,17 @@ if [ -f www/Procfile ]; then
   mv www/Procfile .
 fi
 
+APR_URL="http://apache.mirrors.pair.com//apr/apr-$APR_VERSION.tar.gz"
+echo "-----> Downloading APR version $APR_VERSION source"
+curl --location "$APR_URL" | tar xz
+cd ./apr-$APR_VERSION
+
+echo "-----> Building APR version $APR_VERSION"
+./configure
+make
+make install
+
+cd ..
 APACHE_URL="http://apache.mirrors.pair.com//httpd/httpd-$APACHE_VERSION.tar.gz"
 echo "-----> Downloading Apache version $APACHE_VERSION source"
 curl --location "$APACHE_URL" | tar xz
@@ -38,6 +49,7 @@ echo "-----> Building Apache version $APACHE_VERSION"
 make
 make install
 
+cd ..
 # update config files
 #cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 #cp $LP_DIR/conf/php.ini php
