@@ -12,6 +12,9 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
+echo $1
+echo $2
+
 # include .files when moving things around
 shopt -s dotglob
 
@@ -29,8 +32,11 @@ fi
 
 APACHE_URL="http://apache.mirrors.pair.com//httpd/httpd-$APACHE_VERSION.tar.gz"
 echo "-----> Downloading Apache version $APACHE_VERSION source"
-curl --location "$APACHE_URL" | tar xz
+curl -L "$APACHE_URL" | tar xz
 cd ./httpd-$APACHE_VERSION
+
+http://apache.mirrors.pair.com//apr/apr-1.4.6.tar.gz
+http://apache.mirrors.pair.com//apr/apr-util-1.5.2.tar.gz
 
 echo "-----> Building Apache version $APACHE_VERSION"
 ./configure --prefix=/app/apache/ --with-included-apr
