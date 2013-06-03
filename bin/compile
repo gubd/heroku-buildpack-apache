@@ -34,7 +34,7 @@ curl --location "$APR_URL" | tar xz
 cd ./apr-$APR_VERSION
 
 echo "-----> Building APR version $APR_VERSION"
-./configure
+./configure --prefix=/app/apr/
 make
 make install
 
@@ -45,7 +45,7 @@ curl --location "$APACHE_URL" | tar xz
 cd ./httpd-$APACHE_VERSION
 
 echo "-----> Building Apache version $APACHE_VERSION"
-./configure
+./configure --prefix=/app/apache/
 make
 make install
 
