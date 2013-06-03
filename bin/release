@@ -4,6 +4,5 @@
 cat <<EOF
 ---
 default_process_types:
-  web: httpd
+  web: sh boot.sh
 EOF
-
